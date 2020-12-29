@@ -32,7 +32,7 @@ export interface ICorePlayer {
 	world: ICoreWorld;
 	permissions: IParentedPermissionHolder;
 
-	getObject(): { id: string; ipAddress: string; nickname: string; world: string; permissions: IParentedPermissionHolder };
+	getObject(): { id: string; ipAddress: string; nickname: string; world: string; permissions: object, permissionparents: object };
 	remove(): void;
 	teleport(pos: Position, eworld: string | ICoreWorld) : void;
 	move(pos: Position): void;
