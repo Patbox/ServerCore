@@ -1,6 +1,6 @@
 {
   "name": "voxelservercore",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Basic interfaces/implementation for voxel-based game servers",
   "main": "index.js",
   "scripts": {

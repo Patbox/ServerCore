@@ -1,6 +1,4 @@
 export interface ICoreMessageBuilder {
-	new (): ICoreMessageBuilder;
-
 	newLine(): this;
 	black(): this;
 	blue(): this;
@@ -10,7 +8,7 @@ export interface ICoreMessageBuilder {
 	purple(): this;
 	orange(): this;
 	grey(): this;
-	lightGray(): this;
+	lightGrey(): this;
 	lightBlue(): this;
 	lightGreen(): this;
 	lightCyan(): this;
