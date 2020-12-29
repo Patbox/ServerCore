@@ -1,4 +1,4 @@
 "use strict";
 exports.__esModule = true;
 exports.version = void 0;
-exports.version = '0.1.3';
+exports.version = '0.1.4';
