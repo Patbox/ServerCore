@@ -21,6 +21,7 @@ export interface ICorePlayerManager {
 	getIPBanReason(ip: string): string;
 	banPlayer(id: string, reason?: string): void;
 	banIP(ip: string, reason?: string): void;
+	sendMessageToAll(msg: string | any): void;
 }
 
 export interface ICorePlayer {
@@ -36,7 +37,7 @@ export interface ICorePlayer {
 	remove(): void;
 	teleport(pos: Position, world: string | ICoreWorld) : void;
 	move(pos: Position): void;
-	send(msg): void;
+	send(msg: string | any): void;
 	rotate(rot: number | null, pitch: number | null): void;
 	kick(reason?: string): void;
 	ban(reason?: string): void;

@@ -1,11 +1,11 @@
 {
   "name": "voxelservercore",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Basic interfaces/implementation for voxel-based game servers",
   "main": "index.js",
   "scripts": {
 	"test": "echo \"Error: no test specified\" && exit 1",
-	"build": "tsc ./*.t"
+	"build": "tsc ./*.ts"
   },
   "author": "Patbox <patbox4@outlook.com> (https://pb4.eu)",
   "license": "MIT"
