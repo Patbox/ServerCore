@@ -1,74 +1,74 @@
-import { CoreLogger } from './logger';
-import { CorePermissionHolder, CorePermissionManager } from './permissions';
-import { IPlayer, CorePlayerManager } from './player';
-import { CoreBasicBlock, CoreBasicItem, CoreCommand, CoreRegistry } from './registry';
-import { CoreSocket } from './socket';
+import { ICoreLogger } from './logger';
+import { ICorePermissionHolder, ICorePermissionManager } from './permissions';
+import { ICorePlayer, ICorePlayerManager } from './player';
+import { ICoreBasicBlock, ICoreBasicItem, ICoreCommand, ICoreRegistry } from './registry';
+import { ICoreSocket } from './socket';
 import { Position } from './types';
-import { CoreWorld, CoreWorldManager } from './world';
+import { ICoreWorld, ICoreWorldManager } from './world';
 
-export interface CoreServer {
-	registry: CoreRegistry;
-	worlds: CoreWorldManager;
-	players: CorePlayerManager;
-	permissions: CorePermissionManager;
-	log: CoreLogger;
+export interface ICoreServer {
+	registry: ICoreRegistry;
+	worlds: ICoreWorldManager;
+	players: ICorePlayerManager;
+	permissions: ICorePermissionManager;
+	log: ICoreLogger;
 
 	console: {
 		executor: {
 			name: '#console';
 			id: '#console';
 			send(...args: any[]): void;
-			permissions: CorePermissionHolder;
+			permissions: ICorePermissionHolder;
 		};
 	};
 
-	connectPlayer(socket: CoreSocket): void;
+	connectPlayer(socket: ICoreSocket): void;
 	emit(type: string, data: object);
 
-	on<U extends keyof CoreServerEvents>(event: U, listener: CoreServerEvents[U]): this;
+	on<U extends keyof ICoreServerEvents>(event: U, listener: ICoreServerEvents[U]): this;
 
 	loadConfig(namespace: string, config: string): object;
 
 	saveConfig(namespace: string, config: string, data: object);
 }
 
-export interface CoreServerEvents {
-	'server-started': eh<CoreServer>;
-	'server-stop': eh<CoreServer>;
-	'server-stopped': eh<CoreServer>;
+export interface ICoreServerEvents {
+	'server-started': eh<ICoreServer>;
+	'server-stop': eh<ICoreServer>;
+	'server-stopped': eh<ICoreServer>;
 	'server-config-update': eh<object>;
 
 	'registry-prefinalize': () => void;
 	'registry-define': () => void;
 	'registry-finalize': () => void;
 
-	'item-predefine': eh<CoreBasicItem>;
-	'item-define': eh<CoreBasicItem>;
+	'item-predefine': eh<ICoreBasicItem>;
+	'item-define': eh<ICoreBasicItem>;
 
-	'block-predefine': eh<CoreBasicBlock>;
-	'block-define': eh<CoreBasicBlock>;
+	'block-predefine': eh<ICoreBasicBlock>;
+	'block-define': eh<ICoreBasicBlock>;
 
-	'command-predefine': eh<CoreCommand>;
-	'command-define': eh<CoreCommand>;
+	'command-predefine': eh<ICoreCommand>;
+	'command-define': eh<ICoreCommand>;
 
-	'world-create': eh<CoreWorld>;
-	'world-load': eh<CoreWorld>;
+	'world-create': eh<ICoreWorld>;
+	'world-load': eh<ICoreWorld>;
 	'world-unload': eh<string>;
 
-	'player-create': eh<IPlayer>;
-	'player-firstjoin': eh<IPlayer>;
-	'player-join': eh<IPlayer>;
+	'player-create': eh<ICorePlayer>;
+	'player-firstjoin': eh<ICorePlayer>;
+	'player-join': eh<ICorePlayer>;
 	'player-ban': (id: string, reason: string) => void;
 	'player-ipban': (id: string, reason: string) => void;
-	'player-remove': eh<IPlayer>;
-	'player-quit': eh<IPlayer>;
-	'player-move': (player: IPlayer, position: Position) => {};
-	'player-blockbreak-x': (player: IPlayer, data: object) => {};
-	'player-blockplace-x': (player: IPlayer, data: object) => {};
-	'player-click-x': (player: IPlayer, data: object) => {};
-	'player-move-x': (player: IPlayer, data: object) => {};
-	'player-message-x': (player: IPlayer, data: object) => {};
-	'player-command': (player: IPlayer, command: string, arg: string[]) => {};
+	'player-remove': eh<ICorePlayer>;
+	'player-quit': eh<ICorePlayer>;
+	'player-move': (player: ICorePlayer, position: Position) => {};
+	'player-blockbreak-x': (player: ICorePlayer, data: object) => {};
+	'player-blockplace-x': (player: ICorePlayer, data: object) => {};
+	'player-click-x': (player: ICorePlayer, data: object) => {};
+	'player-move-x': (player: ICorePlayer, data: object) => {};
+	'player-message-x': (player: ICorePlayer, data: object) => {};
+	'player-command': (player: ICorePlayer, command: string, arg: string[]) => {};
 	
 	'chat-message': eh<string>;
 

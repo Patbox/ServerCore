@@ -1,16 +1,16 @@
 
 
-export interface CoreRegistry {
-	items: { [index: string]: CoreBasicItem };
-	blocks: { [index: string]: CoreBasicBlock };
-	commands: { [index: string]: CoreCommand };
+export interface ICoreRegistry {
+	items: { [index: string]: ICoreBasicItem };
+	blocks: { [index: string]: ICoreBasicBlock };
+	commands: { [index: string]: ICoreCommand };
 
-	addItem(item: CoreBasicItem): void;
-	addBlock(item: CoreBasicBlock): void;
-	addCommand(item: CoreCommand): void;
+	addItem(item: ICoreBasicItem): void;
+	addBlock(item: ICoreBasicBlock): void;
+	addCommand(item: ICoreCommand): void;
 }
 
-export interface CoreBasicItem {
+export interface ICoreBasicItem {
 	id: string;
 	numId: number;
 	name: string;
@@ -19,7 +19,7 @@ export interface CoreBasicItem {
 	getObject(): object;
 }
 
-export interface CoreBasicBlock {
+export interface ICoreBasicBlock {
 	id: string;
 	numId: number;
 	name: string;
@@ -27,7 +27,7 @@ export interface CoreBasicBlock {
 	getObject(): object;
 }
 
-export interface CoreCommand {
+export interface ICoreCommand {
 	command: string;
 	description: string;
 	trigger: (executor, arg: String[]) => {};

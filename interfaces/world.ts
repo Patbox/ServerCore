@@ -1,21 +1,21 @@
-import { CoreBasicBlock } from './registry';
+import { ICoreBasicBlock } from './registry';
 import { Position } from './types';
 
-export interface CoreWorldManager {
-	worlds: { [index: string]: CoreWorld };
-	worldGenerator: { [index: string]: CoreWorldGenerator };
-	create(name: string, seed: number, generator: string): CoreWorld | null;
-	load(name: string): CoreWorld | null;
+export interface ICoreWorldManager {
+	worlds: { [index: string]: ICoreWorld };
+	worldGenerator: { [index: string]: ICoreWorldGenerator };
+	create(name: string, seed: number, generator: string): ICoreWorld | null;
+	load(name: string): ICoreWorld | null;
 	unload(name: string): void;
 	exist(name: string): boolean;
-	get(name: string): CoreWorld | undefined;
+	get(name: string): ICoreWorld | undefined;
 	addGenerator(name: string, gen: any): void;
 }
 
-export interface CoreWorld {
+export interface ICoreWorld {
 	name: string;
 	seed: number;
-	generator: CoreWorldGenerator;
+	generator: ICoreWorldGenerator;
 	version: number;
 	entities: object;
 	folder: string;
@@ -29,14 +29,14 @@ export interface CoreWorld {
 		version: number;
 	};
 
-	getBlock(data: Position, allowgen: boolean): CoreBasicBlock;
-	setBlock(data: Position, block: string | number | CoreBasicBlock, allowgen: boolean): Promise<void>;
+	getBlock(data: Position, allowgen: boolean): ICoreBasicBlock;
+	setBlock(data: Position, block: string | number | ICoreBasicBlock, allowgen: boolean): Promise<void>;
 
 	unload(): void;
 }
 
 
-export interface CoreWorldGenerator {
+export interface ICoreWorldGenerator {
 	name: string;
 	seed: number;
 }

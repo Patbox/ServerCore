@@ -1,20 +1,20 @@
 import { IParentedPermissionHolder } from './permissions';
-import { CoreSocket } from './socket';
+import { ICoreSocket } from './socket';
 import { Position } from './types';
-import { CoreWorld } from './world';
+import { ICoreWorld } from './world';
 
-export interface CorePlayerManager {
-	players: { [index: string]: CorePlayer };
+export interface ICorePlayerManager {
+	players: { [index: string]: ICorePlayer };
 	banlist: { [index: string]: string };
 	ipbanlist: { [index: string]: string };
 	cache: { [index: string]: { [index: string]: string } };
 
-	create(id: string, data: any, socket: any): CorePlayer;
+	create(id: string, data: any, socket: any): ICorePlayer;
 	read(id: string): object | null;
 	exist(id: string): boolean;
 	save(id: string, data: object);
-	get(id: string): CorePlayer | null;
-	getAll(): { [index: string]: CorePlayer };
+	get(id: string): ICorePlayer | null;
+	getAll(): { [index: string]: ICorePlayer };
 	isBanned(id: string): boolean;
 	isIPBanned(ip: string): boolean;
 	getBanReason(id: string): string;
@@ -23,18 +23,18 @@ export interface CorePlayerManager {
 	banIP(ip: string, reason?: string): void;
 }
 
-export interface CorePlayer {
+export interface ICorePlayer {
 	readonly id: string;
 	readonly nickname: string;
 	readonly ipAddress: string;
-	readonly socket: CoreSocket;
+	readonly socket: ICoreSocket;
 	displayName: string;
-	world: CoreWorld;
+	world: ICoreWorld;
 	permissions: IParentedPermissionHolder;
 
 	getObject(): { id: string; ipAddress: string; nickname: string; world: string; permissions: IParentedPermissionHolder };
 	remove(): void;
-	teleport(pos: Position, eworld: string | CoreWorld) : void;
+	teleport(pos: Position, eworld: string | ICoreWorld) : void;
 	move(pos: Position): void;
 	send(msg: string): void;
 	rotate(rot: number | null, pitch: number | null): void;
