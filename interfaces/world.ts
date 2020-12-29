@@ -20,8 +20,6 @@ export interface CoreWorld {
 	entities: object;
 	folder: string;
 
-	constructor();
-
 	saveAll(): void;
 
 	getSettings(): {
