@@ -1,4 +1,4 @@
-import { ICoreMessageBuilder } from "./interfaces/messagebuilder";
+import type { ICoreMessageBuilder } from "./interfaces/message";
 
 export let MessageBuilder: ICoreMessageBuilder;
 
