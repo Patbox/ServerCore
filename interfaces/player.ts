@@ -34,9 +34,9 @@ export interface ICorePlayer {
 
 	getObject(): { id: string; ipAddress: string; nickname: string; world: string; permissions: object, permissionparents: object };
 	remove(): void;
-	teleport(pos: Position, eworld: string | ICoreWorld) : void;
+	teleport(pos: Position, world: string | ICoreWorld) : void;
 	move(pos: Position): void;
-	send(msg: string): void;
+	send(msg): void;
 	rotate(rot: number | null, pitch: number | null): void;
 	kick(reason?: string): void;
 	ban(reason?: string): void;

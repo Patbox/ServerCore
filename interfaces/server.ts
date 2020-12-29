@@ -29,7 +29,9 @@ export interface ICoreServer {
 
 	loadConfig(namespace: string, config: string): object;
 
-	saveConfig(namespace: string, config: string, data: object);
+	saveConfig(namespace: string, config: string, data: object): void;
+
+	stopServer(): void;
 }
 
 export interface ICoreServerEvents {
@@ -69,11 +71,9 @@ export interface ICoreServerEvents {
 	'player-move-x': (player: ICorePlayer, data: object) => {};
 	'player-message-x': (player: ICorePlayer, data: object) => {};
 	'player-command': (player: ICorePlayer, command: string, arg: string[]) => {};
-	
-	'chat-message': eh<string>;
 
-	[index: string]: any;
-
+	'chat-message': (string, ICorePlayer) => void;
+	'chat-system-message': eh<string>;
 
 }
 

@@ -1,4 +1,6 @@
 export interface ICoreMessageBuilder {
+	new (): ICoreMessageBuilder;
+
 	newLine(): this;
 	black(): this;
 	blue(): this;
