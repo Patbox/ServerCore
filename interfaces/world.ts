@@ -8,7 +8,7 @@ export interface CoreWorldManager {
 	load(name: string): CoreWorld | null;
 	unload(name: string): void;
 	exist(name: string): boolean;
-	get(name: string): CoreWorld | null;
+	get(name: string): CoreWorld | undefined;
 	addGenerator(name: string, gen: any): void;
 }
 
@@ -27,12 +27,12 @@ export interface CoreWorld {
 	getSettings(): {
 		name: string;
 		seed: number;
-		generator: CoreWorldGenerator;
+		generator: string;
 		version: number;
 	};
 
 	getBlock(data: Position, allowgen: boolean): CoreBasicBlock;
-	setBlock(data: Position, block: CoreBasicBlock, allowgen: boolean): Promise<void>;
+	setBlock(data: Position, block: string | number | CoreBasicBlock, allowgen: boolean): Promise<void>;
 
 	unload(): void;
 }
