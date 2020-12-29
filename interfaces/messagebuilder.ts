@@ -1,4 +1,4 @@
-export interface IMessageBuilder {
+export interface CoreMessageBuilder {
 	newLine(): this;
 	black(): this;
 	blue(): this;

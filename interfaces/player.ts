@@ -1,9 +1,9 @@
 import { IParentedPermissionHolder } from './permissions';
-import { ISocket } from './socket';
+import { CoreSocket } from './socket';
 import { Position } from './types';
-import { IWorld } from './world';
+import { CoreWorld } from './world';
 
-export interface IPlayerManager {
+export interface CorePlayerManager {
 	players: { [index: string]: IPlayer };
 	banlist: { [index: string]: string };
 	ipbanlist: { [index: string]: string };
@@ -27,14 +27,14 @@ export interface IPlayer {
 	readonly id: string;
 	readonly nickname: string;
 	readonly ipAddress: string;
-	readonly socket: ISocket;
+	readonly socket: CoreSocket;
 	displayName: string;
-	world: IWorld;
+	world: CoreWorld;
 	permissions: IParentedPermissionHolder;
 
 	getObject(): { id: string; ipAddress: string; nickname: string; world: string; permissions: IParentedPermissionHolder };
 	remove(): void;
-	teleport(pos: Position, eworld: string | IWorld) : void;
+	teleport(pos: Position, eworld: string | CoreWorld) : void;
 	move(pos: Position): void;
 	send(msg: string): void;
 	rotate(rot: number | null, pitch: number | null): void;

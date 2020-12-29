@@ -1,4 +1,4 @@
-export interface ILogger {
+export interface CoreLogger {
 	normal(...args: any[]): void;
 	chat(...args: any[]): void;
 	warn(...args: any[]): void;

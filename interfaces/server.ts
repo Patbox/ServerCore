@@ -1,58 +1,58 @@
-import { ILogger } from './logger';
-import { IPermissionHolder, IPermissionManager } from './permissions';
-import { IPlayer, IPlayerManager } from './player';
-import { IBasicBlock, IBasicItem, ICommand, IRegistry } from './registry';
-import { ISocket } from './socket';
+import { CoreLogger } from './logger';
+import { CorePermissionHolder, CorePermissionManager } from './permissions';
+import { IPlayer, CorePlayerManager } from './player';
+import { CoreBasicBlock, CoreBasicItem, CoreCommand, CoreRegistry } from './registry';
+import { CoreSocket } from './socket';
 import { Position } from './types';
-import { IWorld, IWorldManager } from './world';
+import { CoreWorld, CoreWorldManager } from './world';
 
-export interface IServer {
-	registry: IRegistry;
-	worlds: IWorldManager;
-	players: IPlayerManager;
-	permissions: IPermissionManager;
-	log: ILogger;
+export interface CoreServer {
+	registry: CoreRegistry;
+	worlds: CoreWorldManager;
+	players: CorePlayerManager;
+	permissions: CorePermissionManager;
+	log: CoreLogger;
 
 	console: {
 		executor: {
 			name: '#console';
 			id: '#console';
 			send(...args: any[]): void;
-			permissions: IPermissionHolder;
+			permissions: CorePermissionHolder;
 		};
 	};
 
-	connectPlayer(socket: ISocket): void;
+	connectPlayer(socket: CoreSocket): void;
 	emit(type: string, data: object);
 
-	on<U extends keyof ServerEvents>(event: U, listener: ServerEvents[U]): this;
+	on<U extends keyof CoreServerEvents>(event: U, listener: CoreServerEvents[U]): this;
 
-	loadConfig(namespace: string, config: string);
+	loadConfig(namespace: string, config: string): object;
 
 	saveConfig(namespace: string, config: string, data: object);
 }
 
-export interface ServerEvents {
-	'server-started': eh<IServer>;
-	'server-stop': eh<IServer>;
-	'server-stopped': eh<IServer>;
+export interface CoreServerEvents {
+	'server-started': eh<CoreServer>;
+	'server-stop': eh<CoreServer>;
+	'server-stopped': eh<CoreServer>;
 	'server-config-update': eh<object>;
 
 	'registry-prefinalize': () => void;
 	'registry-define': () => void;
 	'registry-finalize': () => void;
 
-	'item-predefine': eh<IBasicItem>;
-	'item-define': eh<IBasicItem>;
+	'item-predefine': eh<CoreBasicItem>;
+	'item-define': eh<CoreBasicItem>;
 
-	'block-predefine': eh<IBasicBlock>;
-	'block-define': eh<IBasicBlock>;
+	'block-predefine': eh<CoreBasicBlock>;
+	'block-define': eh<CoreBasicBlock>;
 
-	'command-predefine': eh<ICommand>;
-	'command-define': eh<ICommand>;
+	'command-predefine': eh<CoreCommand>;
+	'command-define': eh<CoreCommand>;
 
-	'world-create': eh<IWorld>;
-	'world-load': eh<IWorld>;
+	'world-create': eh<CoreWorld>;
+	'world-load': eh<CoreWorld>;
 	'world-unload': eh<string>;
 
 	'player-create': eh<IPlayer>;

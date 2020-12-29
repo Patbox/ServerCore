@@ -1,21 +1,21 @@
 export type PermissionList = { [index: string]: boolean | null };
-export type PermissionHolderList = { [index: string]: IPermissionHolder };
+export type PermissionHolderList = { [index: string]: CorePermissionHolder };
 
-export interface IPermissionManager {
-	createGroup(name: string, group: IPermissionHolder): void;
+export interface CorePermissionManager {
+	createGroup(name: string, group: CorePermissionHolder): void;
 	removeGroup(name: string): void;
-	getGroup(name: string): IPermissionHolder;
+	getGroup(name: string): CorePermissionHolder;
 	getAllGroups(): PermissionHolderList;
 }
 
-export interface IPermissionHolder {
+export interface CorePermissionHolder {
 	check(perm: string | string[]): null | boolean;
 	checkStrict(perm: string | string[]): null | boolean;
 	add(perm: string, bool: boolean): void;
 	remove(perm: string): void;
 }
 
-export interface IParentedPermissionHolder extends IPermissionHolder {
+export interface IParentedPermissionHolder extends CorePermissionHolder {
 	addParent(parent: string): void;
 	removeParent(parent: string): void;
 }

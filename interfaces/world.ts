@@ -1,21 +1,21 @@
-import { IBasicBlock } from './registry';
+import { CoreBasicBlock } from './registry';
 import { Position } from './types';
 
-export interface IWorldManager {
-	worlds: { [index: string]: IWorld };
-	worldGenerator: { [index: string]: IWorldGenerator };
-	create(name: string, seed: number, generator: string): IWorld | null;
-	load(name: string): IWorld | null;
+export interface CoreWorldManager {
+	worlds: { [index: string]: CoreWorld };
+	worldGenerator: { [index: string]: CoreWorldGenerator };
+	create(name: string, seed: number, generator: string): CoreWorld | null;
+	load(name: string): CoreWorld | null;
 	unload(name: string): void;
 	exist(name: string): boolean;
-	get(name: string): IWorld | null;
+	get(name: string): CoreWorld | null;
 	addGenerator(name: string, gen: any): void;
 }
 
-export interface IWorld {
+export interface CoreWorld {
 	name: string;
 	seed: number;
-	generator: IWorldGenerator;
+	generator: CoreWorldGenerator;
 	version: number;
 	entities: object;
 	folder: string;
@@ -27,18 +27,18 @@ export interface IWorld {
 	getSettings(): {
 		name: string;
 		seed: number;
-		generator: IWorldGenerator;
+		generator: CoreWorldGenerator;
 		version: number;
 	};
 
-	getBlock(data: Position, allowgen: boolean): IBasicBlock;
-	setBlock(data: Position, block: IBasicBlock, allowgen: boolean): Promise<void>;
+	getBlock(data: Position, allowgen: boolean): CoreBasicBlock;
+	setBlock(data: Position, block: CoreBasicBlock, allowgen: boolean): Promise<void>;
 
 	unload(): void;
 }
 
 
-export interface IWorldGenerator {
+export interface CoreWorldGenerator {
 	name: string;
 	seed: number;
 }

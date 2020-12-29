@@ -1,4 +1,4 @@
-export interface ISocket {
+export interface CoreSocket {
 	ip: string;
 
 	on(type: string, listener: Function): void;
