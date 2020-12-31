@@ -1,9 +1,9 @@
-import type { ICoreMessageBuilder } from "./interfaces/message";
+import type { ICoreMessageBuilderClass } from "./interfaces/message";
 
-export let MessageBuilder: { new(): ICoreMessageBuilder };
+export let MessageBuilder: ICoreMessageBuilderClass;
 export let MessageStringify: (text: any) => string;
 
-export function server_setMessageBuilder(builder: { new(): ICoreMessageBuilder }) {
+export function server_setMessageBuilder(builder: ICoreMessageBuilderClass) {
 	MessageBuilder = builder;
 }
 
