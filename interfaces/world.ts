@@ -3,8 +3,8 @@ import { Position } from './types';
 
 export interface ICoreWorldManager {
 	worlds: { [index: string]: ICoreWorld };
-	worldGenerator: { [index: string]: ICoreWorldGenerator };
-	create(name: string, seed: number, generator: string): ICoreWorld | null;
+	worldGenerator: { [index: string]: { new (...any): ICoreWorldGenerator } };
+	create(name: string, seed: number, generator: string, ...worldSettings: any): ICoreWorld | null;
 	load(name: string): ICoreWorld | null;
 	unload(name: string): void;
 	exist(name: string): boolean;
@@ -27,10 +27,13 @@ export interface ICoreWorld {
 		seed: number;
 		generator: string;
 		version: number;
+		[i: string]: any
 	};
 
-	getBlock(data: Position, allowgen: boolean): ICoreBasicBlock;
-	setBlock(data: Position, block: string | number | ICoreBasicBlock, allowgen: boolean): Promise<void>;
+	getBlockSync(data: Position): ICoreBasicBlock | null;
+	getBlock(data: Position, allowgen: boolean): Promise<ICoreBasicBlock | null>;
+
+	setBlock(data: Position, block: string | number | ICoreBasicBlock, allowgen: boolean): void;
 
 	unload(): void;
 }

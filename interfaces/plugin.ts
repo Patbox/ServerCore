@@ -6,3 +6,11 @@ export interface ICorePlugin {
 	supportedGameAPI: string;
 	[index: string]: any; 
 }
+
+
+export interface ICorePluginManager {
+	get(name: string): ICorePlugin;
+	getAll(): {[i: string]: ICorePlugin};
+	load(path: string): boolean;
+	loadAllNotLoaded(): boolean;
+}

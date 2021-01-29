@@ -1,7 +1,7 @@
 
 
 export interface ICoreRegistry {
-	items: { [index: string]: ICoreBasicItem };
+	items?: { [index: string]: ICoreBasicItem };
 	blocks: { [index: string]: ICoreBasicBlock };
 	commands: { [index: string]: ICoreCommand };
 

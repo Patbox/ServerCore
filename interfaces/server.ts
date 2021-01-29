@@ -1,16 +1,21 @@
 import { ICoreLogger } from './logger';
 import { ICorePermissionHolder, ICorePermissionManager } from './permissions';
 import { ICorePlayer, ICorePlayerManager } from './player';
+import { ICorePluginManager } from './plugin';
 import { ICoreBasicBlock, ICoreBasicItem, ICoreCommand, ICoreRegistry } from './registry';
 import { ICoreSocket } from './socket';
 import { Position } from './types';
 import { ICoreWorld, ICoreWorldManager } from './world';
 
 export interface ICoreServer {
+	name: string;
+	version: string;
+
 	registry: ICoreRegistry;
 	worlds: ICoreWorldManager;
 	players: ICorePlayerManager;
 	permissions: ICorePermissionManager;
+	plugins: ICorePluginManager;
 	log: ICoreLogger;
 
 	console: {
